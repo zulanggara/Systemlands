@@ -45,7 +45,7 @@ export class Translator {
     patterns.sort((a, b) => b.weight - a.weight)
     this.patterns = patterns.map(({ key, to }) => ({
       test: new RegExp(
-        '^' + key.split(SLOT).map((part, i) => (i % 2 ? '(.+?)' : escape(part))).join('') + '$',
+        '^' + key.split(SLOT).map((part, i) => (i % 2 ? '(.*?)' : escape(part))).join('') + '$',
         's',
       ),
       to,
