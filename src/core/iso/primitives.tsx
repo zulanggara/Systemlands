@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Marker, V3 } from '../types'
+import { t } from '../../i18n'
 import { depth, points, project, S } from './geometry'
 
 // A box standing at (x, z), from height y up by h. Without `fill` it uses the
@@ -228,7 +229,7 @@ export function IsoGrid() {
 export function MarkerPin({ marker }: { marker: Marker }) {
   const [sx, sy] = project(marker.at)
   const ask = marker.tone === 'ask'
-  const text = marker.label.toUpperCase()
+  const text = t(marker.label).toUpperCase()
   const w = text.length * 7.6 + 28
   return (
     <g transform={`translate(${sx} ${sy})`}>
@@ -261,7 +262,7 @@ export function MarkerPin({ marker }: { marker: Marker }) {
 // A label pinned above a point in the world.
 export function Tag({ at, label, danger, color: tint }: { at: V3; label: string; danger?: boolean; color?: string }) {
   const [sx, sy] = project(at)
-  const text = label.toUpperCase()
+  const text = t(label).toUpperCase()
   const w = text.length * 7.4 + 24
   const color = danger ? 'var(--danger)' : (tint ?? 'var(--fg)')
   return (

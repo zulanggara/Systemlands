@@ -3,6 +3,7 @@ import type { Marker, V3 } from '../types'
 import { frameScale, project, VIEW_H, VIEW_W } from './geometry'
 import { IsoGrid, MarkerPin } from './primitives'
 import Tooltip from '../Tooltip'
+import { t } from '../../i18n'
 
 const MIN_ZOOM = 0.5
 const MAX_ZOOM = 3
@@ -325,7 +326,7 @@ function fitMarkers(
   let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity
   for (const m of asks) {
     const [sx, sy] = project(m.at)
-    const half = (m.label.length * 7.6 + 28) / 2 + 8
+    const half = (t(m.label).length * 7.6 + 28) / 2 + 8
     x0 = Math.min(x0, sx - half)
     x1 = Math.max(x1, sx + half)
     y0 = Math.min(y0, sy - 52)

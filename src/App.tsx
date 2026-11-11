@@ -16,6 +16,7 @@ import Tooltip from "./core/Tooltip";
 import CheatSheetPage from "./core/CheatSheetPage";
 import TopicComplete from "./TopicComplete";
 import { TOPICS, type TopicEntry } from "./topics/registry";
+import LanguageButton from "./i18n/LanguageButton";
 
 const themeIcon = {
   width: 15,
@@ -117,6 +118,7 @@ export default function App() {
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <WhatsNew home={!topic} />
+            <LanguageButton />
             <Tooltip
               text={dark ? "Light theme" : "Dark theme"}
               className="inline-flex"

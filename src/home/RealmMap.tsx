@@ -6,6 +6,7 @@ import ProjectCard from './ProjectCard'
 import { PROJECTS, isBuilt, projectNumber, type Project } from './projects'
 import { Castle, castleHeight } from './realmCastle'
 import type { ProjectState } from './shared'
+import { t } from '../i18n'
 
 // The home map: each realm is its own hill, higher the harder it is, with a
 // capital in its middle and the other castles around it. A single road runs
@@ -349,14 +350,15 @@ const Scene = memo(function Scene({ states, selected, ls, names, realms, phone, 
         {startHere && (() => {
           const p = PROJECTS[0]
           const tipY = p.y - castleHeight(p) * (CAPITALS[p.id] ?? 1) - 30
-          const w = 96 * ls
+          const text = t('START HERE')
+          const w = (text.length * 8.3 + 13) * ls
           const h = 25 * ls
           return (
             <g pointerEvents="none" className="start-bob">
               <path d={`M${p.x - 6 * ls} ${tipY - 1} L${p.x} ${tipY + 7 * ls} L${p.x + 6 * ls} ${tipY - 1} Z`} fill="var(--danger)" />
               <rect x={p.x - w / 2} y={tipY - h} width={w} height={h} rx={h / 2} fill="var(--danger)" />
               <text x={p.x} y={tipY - h / 2} textAnchor="middle" dominantBaseline="central" className="font-mono" fill="#fff" fontSize={12.5 * ls} fontWeight={700} letterSpacing="0.06em">
-                START HERE
+                {text}
               </text>
             </g>
           )

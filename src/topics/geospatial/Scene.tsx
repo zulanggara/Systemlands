@@ -3,6 +3,7 @@ import { depth, points, project } from '../../core/iso/geometry'
 import { IsoBox, Tag } from '../../core/iso/primitives'
 import Viewport from '../../core/iso/Viewport'
 import type { SceneProps, V3 } from '../../core/types'
+import { t } from '../../i18n'
 import type { GeoSim, Leaf, Rect } from './engine'
 import type { Beat, GeoState } from './types'
 import { at, FLOOR, MAP, MS_PER_TICK } from './world'
@@ -151,7 +152,7 @@ export default function Scene({ simRef, lastTickAt, st, beat, shot, shake, quiet
 // (`top` pixels up) to the label, `lift` pixels higher.
 function Label({ x, z, top, lift, label, color }: { x: number; z: number; top: number; lift: number; label: string; color: string }) {
   const [sx, sy] = project([x, FLOOR, z])
-  const text = label.toUpperCase()
+  const text = t(label).toUpperCase()
   const w = text.length * 7.4 + 24
   const y = -top - lift
   return (
