@@ -36,40 +36,14 @@ Text the extractor does not find can be added by hand to `src/i18n/id/_extra.jso
 
 ## Status
 
-Translated: the interface, the home page, and the topics load-balancing,
-caching, cdn, autoscaling, replication, sharding, consistent-hashing, cap,
-queues, pubsub, rate-limiting, circuit-breakers, fan-out, real-time, presence,
-adaptive-streaming, consensus, idempotency, locking, chunking-dedupe.
+Every topic and capstone is translated, plus the interface and the home page.
 
-Still in English: bloom-filters, geospatial, transactions, and the capstones
-(url-shortener, notifications, web-crawler, news-feed, chat, video-streaming,
-key-value-store, payments, ride-sharing, twitter-timeline, youtube, dropbox,
-whatsapp).
+What `extract.cjs` still lists as untranslated (about 400 of 5,800 strings) is
+left in English on purpose: technical terms (Hot key, Fencing tokens, Token
+bucket, Dispatch, Gateway, ...), proper names, units and code such as CSS
+values and storage keys. If a term should be Indonesian after all, add it to
+`src/i18n/id/_extra.json` or to the topic's file.
 
-## Prompt to continue
-
-```text
-Lanjutkan terjemahan bahasa Indonesia di repo ini. Baca scripts/i18n/README.md dulu.
-
-1. Jalankan `npm ci` lalu `node scripts/i18n/extract.cjs` untuk melihat grup mana
-   yang masih punya string belum diterjemahkan.
-2. Untuk tiap grup yang belum selesai (mulai dari bloom-filters, geospatial,
-   transactions, lalu capstone: url-shortener, notifications, web-crawler,
-   news-feed, chat, video-streaming, key-value-store, payments, ride-sharing,
-   twitter-timeline, youtube, dropbox, whatsapp, dan sisa di common/core):
-   baca scripts/i18n/work/todo/<grup>.txt, tulis terjemahannya ke
-   scripts/i18n/work/id/<grup>.txt dengan format `nomor|teks Indonesia`
-   (nomor sama dengan sumbernya), lalu jalankan `node scripts/i18n/build.cjs`.
-3. Gaya terjemahan, ikuti yang sudah ada di src/i18n/id/*.json: bahasa Indonesia
-   yang ringkas dan natural, sapaan "kamu". Istilah teknis tetap bahasa Inggris
-   (cache, server, database, queue, load balancer, shard, replica, leader,
-   follower, request, read/write, retry, timeout, hit/miss, crash, dan
-   sejenisnya). Pertahankan slot {0}, {1}. Lewati baris yang bukan teks untuk
-   pembaca (nama orang/produk, nilai CSS, key, kode).
-4. Kerjakan 2-3 grup per putaran, commit dan push tiap putaran supaya progres
-   tidak hilang.
-5. Setelah semua selesai: `npm run lint`, `npm test`, `npm run build`, lalu buka
-   beberapa topik dengan bahasa ID (localStorage `lang` = `id`) dan periksa teks
-   yang masih Inggris atau label yang terpotong. Perbarui bagian Status di
-   scripts/i18n/README.md.
-```
+To check the result, set `localStorage.lang = "id"` (or press the EN/ID button),
+open a few topics and look for English text or labels that are cut off. Short
+labels inside the 3D scenes are the likeliest to be too wide.
